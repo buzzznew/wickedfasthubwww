@@ -7,112 +7,113 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:radial-gradient(circle at top,#2a1f35,#0d0d17 70%);
-overflow:hidden;
-color:#fff;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:radial-gradient(circle at top,#2a1f35,#0d0d17 70%);
+    color:#fff;
+    overflow:hidden;
 }
 
 .container{
-text-align:center;
-width:90%;
-max-width:380px;
+    width:90%;
+    max-width:380px;
+    text-align:center;
 }
 
 .loader{
-width:170px;
-height:170px;
-margin:auto;
-position:relative;
+    width:170px;
+    height:170px;
+    margin:auto;
+    position:relative;
 }
 
-.loader:before{
-content:"";
-position:absolute;
-inset:0;
-border-radius:50%;
-border:6px solid transparent;
-border-top:#ff3b5f 6px solid;
-border-right:#ff9b55 6px solid;
-border-bottom:#ff3b5f 6px solid;
-animation:spin 2s linear infinite;
+.loader::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:6px solid transparent;
+    border-top-color:#ff3b5f;
+    border-right-color:#ff9b55;
+    border-bottom-color:#ff3b5f;
+    animation:spin 2s linear infinite;
 }
 
-.loader:after{
-content:"";
-position:absolute;
-top:30px;
-left:30px;
-right:30px;
-bottom:30px;
-border-radius:50%;
-border:5px solid transparent;
-border-right:#8de8ff 5px solid;
-animation:spinReverse 1.5s linear infinite;
+.loader::after{
+    content:"";
+    position:absolute;
+    inset:30px;
+    border-radius:50%;
+    border:5px solid transparent;
+    border-right-color:#8de8ff;
+    animation:spinReverse 1.5s linear infinite;
 }
 
 .icon{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:40px;
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:42px;
 }
 
 @keyframes spin{
-100%{transform:rotate(360deg);}
+    to{
+        transform:rotate(360deg);
+    }
 }
 
 @keyframes spinReverse{
-100%{transform:rotate(-360deg);}
+    to{
+        transform:rotate(-360deg);
+    }
 }
 
 .badge{
-display:inline-block;
-margin-top:35px;
-padding:10px 28px;
-border-radius:40px;
-background:#3d1621;
-color:#ff5a74;
-font-weight:bold;
-letter-spacing:2px;
+    display:inline-block;
+    margin-top:35px;
+    padding:10px 28px;
+    border-radius:40px;
+    background:#3d1621;
+    color:#ff5a74;
+    font-weight:bold;
+    letter-spacing:2px;
 }
 
 .play{
-margin-top:20px;
-font-size:42px;
-font-weight:bold;
+    margin-top:20px;
+    font-size:42px;
+    font-weight:bold;
 }
 
 .progress{
-margin-top:40px;
-height:6px;
-background:#333;
-border-radius:30px;
-overflow:hidden;
+    margin-top:40px;
+    height:6px;
+    background:#333;
+    border-radius:30px;
+    overflow:hidden;
 }
 
 .bar{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#ff4455,#ffb65a,#9beeff);
-transition:.1s;
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#ff4455,#ffb65a,#9beeff);
 }
 
 .text{
-margin-top:18px;
-font-size:24px;
-color:#bdbdbd;
+    margin-top:18px;
+    font-size:24px;
+    color:#cfcfcf;
 }
 </style>
 </head>
@@ -121,54 +122,50 @@ color:#bdbdbd;
 
 <div class="container">
 
-<div class="loader">
-<div class="icon">📰</div>
-</div>
+    <div class="loader">
+        <div class="icon">📰</div>
+    </div>
 
-<div class="badge">LIVE NEWS</div>
+    <div class="badge">LIVE NEWS</div>
 
-<div class="play">😥 Play Now ▶️</div>
+    <div class="play">😥 Play Now ▶️</div>
 
-<div class="progress">
-<div class="bar" id="bar"></div>
-</div>
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
 
-<div class="text" id="count">Opening in 3s...</div>
+    <div class="text" id="count">Opening in 2s...</div>
 
 </div>
 
 <script>
+const redirect = "https://wordpress-1640591-6510286.cloudwaysapps.com/vip286nzm/?utm_source=WafaShoNa&utm_medium=*";
 
-const redirect="https://digitalearntips.com/newwafa.html?utm_source=WafaShoNa&utm_medium=4T*";
+const duration = 2000;
+const startTime = performance.now();
 
-let sec=3;
-let width=0;
+const bar = document.getElementById("bar");
+const count = document.getElementById("count");
 
-const bar=document.getElementById("bar");
-const txt=document.getElementById("count");
+function animate(now){
 
-const timer=setInterval(()=>{
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
 
-width+=3.33;
-bar.style.width=width+"%";
+    bar.style.width = (progress * 100) + "%";
 
-if(width>=33.3 && sec===3){
-sec=2;
-txt.innerHTML="Opening in 2s...";
+    const seconds = Math.max(0, Math.ceil((duration - elapsed) / 1000));
+
+    if(progress < 1){
+        count.textContent = `Opening in ${seconds}s...`;
+        requestAnimationFrame(animate);
+    }else{
+        count.textContent = "Opening...";
+        location.replace(redirect);
+    }
 }
 
-if(width>=66.6 && sec===2){
-sec=1;
-txt.innerHTML="Opening in 1s...";
-}
-
-if(width>=100){
-clearInterval(timer);
-window.location.href=redirect;
-}
-
-},100);
-
+requestAnimationFrame(animate);
 </script>
 
 </body>
