@@ -1,172 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live News</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Video App</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <link rel="stylesheet" href="style.css">
 
-body{
-    font-family:Arial,sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    background:radial-gradient(circle at top,#2a1f35,#0d0d17 70%);
-    color:#fff;
-    overflow:hidden;
-}
-
-.container{
-    width:90%;
-    max-width:380px;
-    text-align:center;
-}
-
-.loader{
-    width:170px;
-    height:170px;
-    margin:auto;
-    position:relative;
-}
-
-.loader::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:50%;
-    border:6px solid transparent;
-    border-top-color:#ff3b5f;
-    border-right-color:#ff9b55;
-    border-bottom-color:#ff3b5f;
-    animation:spin 2s linear infinite;
-}
-
-.loader::after{
-    content:"";
-    position:absolute;
-    inset:30px;
-    border-radius:50%;
-    border:5px solid transparent;
-    border-right-color:#8de8ff;
-    animation:spinReverse 1.5s linear infinite;
-}
-
-.icon{
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:42px;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes spinReverse{
-    to{
-        transform:rotate(-360deg);
-    }
-}
-
-.badge{
-    display:inline-block;
-    margin-top:35px;
-    padding:10px 28px;
-    border-radius:40px;
-    background:#3d1621;
-    color:#ff5a74;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.play{
-    margin-top:20px;
-    font-size:42px;
-    font-weight:bold;
-}
-
-.progress{
-    margin-top:40px;
-    height:6px;
-    background:#333;
-    border-radius:30px;
-    overflow:hidden;
-}
-
-.bar{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,#ff4455,#ffb65a,#9beeff);
-}
-
-.text{
-    margin-top:18px;
-    font-size:24px;
-    color:#cfcfcf;
-}
-</style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="container">
+<div class="app">
 
-    <div class="loader">
-        <div class="icon">📰</div>
+    <!-- Feed -->
+    <div id="feed" class="feed">
+
+        <!-- Reel 1 -->
+        <section class="reel active">
+
+            <video
+                class="video"
+                src="assets/videos/reel1.mp4"
+                autoplay
+                muted
+                loop
+                playsinline>
+            </video>
+
+            <div class="gradient"></div>
+
+            <div class="top-bar">
+
+                <div class="logo">
+                    Reels
+                </div>
+
+                <div class="top-icons">
+                    <i class="fa-solid fa-camera"></i>
+                    <i class="fa-regular fa-paper-plane"></i>
+                </div>
+
+            </div>
+
+            <div class="right-menu">
+
+                <button class="icon like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>120K</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-regular fa-comment"></i>
+                    <span>4.2K</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-solid fa-share"></i>
+                    <span>Share</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-solid fa-bookmark"></i>
+                </button>
+
+            </div>
+
+            <div class="bottom">
+
+                <div class="profile-row">
+
+                    <img
+                        class="avatar"
+                        src="assets/images/avatar1.jpg">
+
+                    <div>
+
+                        <div class="username">
+                            @creator_one
+                        </div>
+
+                        <div class="caption">
+                            Beautiful sunset 🌅
+                        </div>
+
+                    </div>
+
+                    <button class="follow">
+                        Follow
+                    </button>
+
+                </div>
+
+                <div class="music">
+                    <i class="fa-solid fa-music"></i>
+                    Original Audio
+                </div>
+
+            </div>
+
+            <div class="progress"></div>
+
+        </section>
+
+        <!-- Reel 2 -->
+        <section class="reel">
+
+            <video
+                class="video"
+                src="assets/videos/reel2.mp4"
+                muted
+                loop
+                playsinline>
+            </video>
+
+            <div class="gradient"></div>
+
+            <div class="right-menu">
+
+                <button class="icon like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>54K</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-regular fa-comment"></i>
+                    <span>910</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-solid fa-share"></i>
+                    <span>Share</span>
+                </button>
+
+            </div>
+
+            <div class="bottom">
+
+                <div class="profile-row">
+
+                    <img
+                        class="avatar"
+                        src="assets/images/avatar2.jpg">
+
+                    <div>
+
+                        <div class="username">
+                            @traveler
+                        </div>
+
+                        <div class="caption">
+                            Mountains ❤️
+                        </div>
+
+                    </div>
+
+                    <button class="follow">
+                        Follow
+                    </button>
+
+                </div>
+
+                <div class="music">
+                    <i class="fa-solid fa-music"></i>
+                    Chill Beats
+                </div>
+
+            </div>
+
+            <div class="progress"></div>
+
+        </section>
+
+        <!-- Reel 3 -->
+        <section class="reel">
+
+            <video
+                class="video"
+                src="assets/videos/reel3.mp4"
+                muted
+                loop
+                playsinline>
+            </video>
+
+            <div class="gradient"></div>
+
+            <div class="right-menu">
+
+                <button class="icon like-btn">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>340K</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-regular fa-comment"></i>
+                    <span>16K</span>
+                </button>
+
+                <button class="icon">
+                    <i class="fa-solid fa-share"></i>
+                    <span>Share</span>
+                </button>
+
+            </div>
+
+            <div class="bottom">
+
+                <div class="profile-row">
+
+                    <img
+                        class="avatar"
+                        src="assets/images/avatar3.jpg">
+
+                    <div>
+
+                        <div class="username">
+                            @nature
+                        </div>
+
+                        <div class="caption">
+                            Explore the world 🌍
+                        </div>
+
+                    </div>
+
+                    <button class="follow">
+                        Follow
+                    </button>
+
+                </div>
+
+                <div class="music">
+                    <i class="fa-solid fa-music"></i>
+                    Adventure Mix
+                </div>
+
+            </div>
+
+            <div class="progress"></div>
+
+        </section>
+
     </div>
 
-    <div class="badge">LIVE NEWS</div>
+    <!-- Bottom Navigation -->
+    <nav class="nav">
 
-    <div class="play">😥 Play Now ▶️</div>
+        <button class="nav-btn active">
+            <i class="fa-solid fa-house"></i>
+        </button>
 
-    <div class="progress">
-        <div class="bar" id="bar"></div>
-    </div>
+        <button class="nav-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
 
-    <div class="text" id="count">Opening in 2s...</div>
+        <button class="nav-btn">
+            <i class="fa-solid fa-circle-plus"></i>
+        </button>
+
+        <button class="nav-btn">
+            <i class="fa-solid fa-film"></i>
+        </button>
+
+        <button class="nav-btn">
+            <i class="fa-solid fa-user"></i>
+        </button>
+
+    </nav>
 
 </div>
 
-<script>
-const redirect = "https://wordpress-1640591-6510286.cloudwaysapps.com/vip286nzm/?utm_source=WafaShoNa&utm_medium=*";
-
-const duration = 2000;
-const startTime = performance.now();
-
-const bar = document.getElementById("bar");
-const count = document.getElementById("count");
-
-function animate(now){
-
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    bar.style.width = (progress * 100) + "%";
-
-    const seconds = Math.max(0, Math.ceil((duration - elapsed) / 1000));
-
-    if(progress < 1){
-        count.textContent = `Opening in ${seconds}s...`;
-        requestAnimationFrame(animate);
-    }else{
-        count.textContent = "Opening...";
-        location.replace(redirect);
-    }
-}
-
-requestAnimationFrame(animate);
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
