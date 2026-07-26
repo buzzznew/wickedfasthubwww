@@ -1,85 +1,288 @@
-// Elements
-const feed = document.getElementById("feed");
-const reels = document.querySelectorAll(".reel");
-const videos = document.querySelectorAll(".video");
+/* ===========================
+   INSTALL BUTTON
+=========================== */
 
-// ---------- Autoplay ----------
-const observer = new IntersectionObserver((entries) => {
+const installBtn = document.getElementById("installBtn");
 
-    entries.forEach(entry => {
+installBtn.addEventListener("click", () => {
 
-        const video = entry.target.querySelector("video");
+    installBtn.innerHTML = "Installing...";
+    installBtn.disabled = true;
 
-        if (!video) return;
+    showToast("Preparing download...");
 
-        if (entry.isIntersecting) {
+    setTimeout(() => {
 
-            document.querySelectorAll("video").forEach(v => {
-                if (v !== video) {
-                    v.pause();
-                    v.currentTime = 0;
-                }
+        installBtn.innerHTML = "Installed ✓";
+        installBtn.style.background = "#27ae60";
+
+        // Redirect example
+        // window.location.href="https://your-link.com";
+
+    },2000);
+
+});
+
+/* ===========================
+   SHARE
+=========================== */
+
+const shareBtn = document.querySelector(".share");
+
+shareBtn.onclick = async () => {
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share({
+
+                title:"Proxy Browser",
+
+                text:"Check out this app!",
+
+                url:location.href
+
             });
 
-            video.play().catch(()=>{});
+        }catch(e){}
 
-        } else {
+    }else{
 
-            video.pause();
+        navigator.clipboard.writeText(location.href);
 
-        }
+        showToast("Link copied");
 
-    });
+    }
 
-},{
-    threshold:0.7
-});
+};
 
-reels.forEach(reel=>observer.observe(reel));
+/* ===========================
+   STORY CLICK
+=========================== */
 
-// ---------- Double Tap Like ----------
-reels.forEach(reel=>{
+document.querySelectorAll(".story").forEach(story=>{
 
-    let lastTap = 0;
+    story.onclick=()=>{
 
-    reel.addEventListener("click",(e)=>{
+        story.style.transform="scale(.9)";
 
-        const now = Date.now();
+        setTimeout(()=>{
 
-        if(now-lastTap<300){
+            story.style.transform="scale(1)";
 
-            likeAnimation(reel);
+        },180);
 
-            const btn = reel.querySelector(".like-btn");
+        showToast(story.innerText);
 
-            if(btn){
-
-                btn.classList.add("active");
-
-                btn.innerHTML=`
-                    <i class="fa-solid fa-heart"></i>
-                    <span>Liked</span>
-                `;
-
-            }
-
-        }
-
-        lastTap = now;
-
-    });
+    }
 
 });
 
-// ---------- Heart Animation ----------
-function likeAnimation(reel){
+/* ===========================
+   TAB SWITCH
+=========================== */
 
-    const heart=document.createElement("div");
+const tabs=document.querySelectorAll(".tab");
 
-    heart.className="heart-animation";
+tabs.forEach(tab=>{
 
-    heart.innerHTML='<i class="fa-solid fa-heart"></i>';
+    tab.onclick=()=>{
 
-    reel.appendChild(heart);
+        tabs.forEach(t=>t.classList.remove("active"));
 
-   
+        tab.classList.add("active");
+
+        showToast(tab.innerText);
+
+    }
+
+});
+
+/* ===========================
+   LIKE BUTTONS
+=========================== */
+
+document.querySelectorAll(".actions button").forEach(btn=>{
+
+    btn.onclick=()=>{
+
+        const icon=btn.querySelector("i");
+
+        if(icon.classList.contains("fa-heart")){
+
+            icon.classList.remove("fa-regular");
+
+            icon.classList.add("fa-solid");
+
+            icon.style.color="#ff204f";
+
+        }
+
+    }
+
+});
+
+/* ===========================
+   COUNTER ANIMATION
+=========================== */
+
+function animateValue(id,end){
+
+    const el=document.getElementById(id);
+
+    if(!el) return;
+
+    let start=0;
+
+    const timer=setInterval(()=>{
+
+        start+=Math.ceil(end/80);
+
+        if(start>=end){
+
+            start=end;
+
+            clearInterval(timer);
+
+        }
+
+        if(end>=1000000){
+
+            el.innerHTML=(start/1000000).toFixed(1)+"M";
+
+        }else{
+
+            el.innerHTML=(start/1000).toFixed(0)+"K";
+
+        }
+
+    },20);
+
+}
+
+animateValue("likes",1800000);
+
+animateValue("downloads",2000000);
+
+/* ===========================
+   DARK MODE
+=========================== */
+
+let dark=false;
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key.toLowerCase()=="d"){
+
+        dark=!dark;
+
+        if(dark){
+
+            document.body.style.background="#101010";
+
+            document.querySelector(".page").style.background="#181818";
+
+            document.querySelectorAll("*").forEach(el=>{
+
+                el.style.color="#fff";
+
+            });
+
+        }else{
+
+            location.reload();
+
+        }
+
+    }
+
+});
+
+/* ===========================
+   SCROLL ANIMATION
+=========================== */
+
+const cards=document.querySelectorAll(".card");
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+});
+
+});
+
+cards.forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(40px)";
+
+card.style.transition=".5s";
+
+observer.observe(card);
+
+});
+
+/* ===========================
+   TOAST
+=========================== */
+
+const toast=document.createElement("div");
+
+toast.style.position="fixed";
+toast.style.bottom="30px";
+toast.style.left="50%";
+toast.style.transform="translateX(-50%)";
+toast.style.background="#111";
+toast.style.color="#fff";
+toast.style.padding="12px 20px";
+toast.style.borderRadius="40px";
+toast.style.opacity="0";
+toast.style.transition=".3s";
+toast.style.zIndex="9999";
+
+document.body.appendChild(toast);
+
+function showToast(text){
+
+toast.innerHTML=text;
+
+toast.style.opacity="1";
+
+setTimeout(()=>{
+
+toast.style.opacity="0";
+
+},1800);
+
+}
+
+/* ===========================
+   MENU BUTTON
+=========================== */
+
+document.querySelector(".menu-btn").onclick=()=>{
+
+showToast("Menu clicked");
+
+};
+
+/* ===========================
+   PAGE LOADED
+=========================== */
+
+window.onload=()=>{
+
+showToast("Welcome 👋");
+
+};
