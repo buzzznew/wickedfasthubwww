@@ -1,272 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short Video App</title>
 
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<title>App Profile</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
 </head>
+
 <body>
 
-<div class="app">
+<div class="page">
 
-    <!-- Feed -->
-    <div id="feed" class="feed">
+    <!-- Cover -->
 
-        <!-- Reel 1 -->
-        <section class="reel active">
+    <header class="cover">
 
-            <video
-                class="video"
-                src="assets/videos/reel1.mp4"
-                autoplay
-                muted
-                loop
-                playsinline>
-            </video>
+        <img src="assets/images/cover.jpg" class="cover-img">
 
-            <div class="gradient"></div>
-
-            <div class="top-bar">
-
-                <div class="logo">
-                    Reels
-                </div>
-
-                <div class="top-icons">
-                    <i class="fa-solid fa-camera"></i>
-                    <i class="fa-regular fa-paper-plane"></i>
-                </div>
-
-            </div>
-
-            <div class="right-menu">
-
-                <button class="icon like-btn">
-                    <i class="fa-regular fa-heart"></i>
-                    <span>120K</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-regular fa-comment"></i>
-                    <span>4.2K</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-solid fa-share"></i>
-                    <span>Share</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-solid fa-bookmark"></i>
-                </button>
-
-            </div>
-
-            <div class="bottom">
-
-                <div class="profile-row">
-
-                    <img
-                        class="avatar"
-                        src="assets/images/avatar1.jpg">
-
-                    <div>
-
-                        <div class="username">
-                            @creator_one
-                        </div>
-
-                        <div class="caption">
-                            Beautiful sunset 🌅
-                        </div>
-
-                    </div>
-
-                    <button class="follow">
-                        Follow
-                    </button>
-
-                </div>
-
-                <div class="music">
-                    <i class="fa-solid fa-music"></i>
-                    Original Audio
-                </div>
-
-            </div>
-
-            <div class="progress"></div>
-
-        </section>
-
-        <!-- Reel 2 -->
-        <section class="reel">
-
-            <video
-                class="video"
-                src="assets/videos/reel2.mp4"
-                muted
-                loop
-                playsinline>
-            </video>
-
-            <div class="gradient"></div>
-
-            <div class="right-menu">
-
-                <button class="icon like-btn">
-                    <i class="fa-regular fa-heart"></i>
-                    <span>54K</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-regular fa-comment"></i>
-                    <span>910</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-solid fa-share"></i>
-                    <span>Share</span>
-                </button>
-
-            </div>
-
-            <div class="bottom">
-
-                <div class="profile-row">
-
-                    <img
-                        class="avatar"
-                        src="assets/images/avatar2.jpg">
-
-                    <div>
-
-                        <div class="username">
-                            @traveler
-                        </div>
-
-                        <div class="caption">
-                            Mountains ❤️
-                        </div>
-
-                    </div>
-
-                    <button class="follow">
-                        Follow
-                    </button>
-
-                </div>
-
-                <div class="music">
-                    <i class="fa-solid fa-music"></i>
-                    Chill Beats
-                </div>
-
-            </div>
-
-            <div class="progress"></div>
-
-        </section>
-
-        <!-- Reel 3 -->
-        <section class="reel">
-
-            <video
-                class="video"
-                src="assets/videos/reel3.mp4"
-                muted
-                loop
-                playsinline>
-            </video>
-
-            <div class="gradient"></div>
-
-            <div class="right-menu">
-
-                <button class="icon like-btn">
-                    <i class="fa-regular fa-heart"></i>
-                    <span>340K</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-regular fa-comment"></i>
-                    <span>16K</span>
-                </button>
-
-                <button class="icon">
-                    <i class="fa-solid fa-share"></i>
-                    <span>Share</span>
-                </button>
-
-            </div>
-
-            <div class="bottom">
-
-                <div class="profile-row">
-
-                    <img
-                        class="avatar"
-                        src="assets/images/avatar3.jpg">
-
-                    <div>
-
-                        <div class="username">
-                            @nature
-                        </div>
-
-                        <div class="caption">
-                            Explore the world 🌍
-                        </div>
-
-                    </div>
-
-                    <button class="follow">
-                        Follow
-                    </button>
-
-                </div>
-
-                <div class="music">
-                    <i class="fa-solid fa-music"></i>
-                    Adventure Mix
-                </div>
-
-            </div>
-
-            <div class="progress"></div>
-
-        </section>
-
-    </div>
-
-    <!-- Bottom Navigation -->
-    <nav class="nav">
-
-        <button class="nav-btn active">
-            <i class="fa-solid fa-house"></i>
+        <button class="menu-btn">
+            <i class="fa-solid fa-ellipsis"></i>
         </button>
 
-        <button class="nav-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    </header>
+
+    <!-- Profile -->
+
+    <section class="profile">
+
+        <img src="assets/images/logo.png" class="profile-img">
+
+        <div class="verified">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <h1 class="app-name">
+            Proxy Browser
+        </h1>
+
+        <p class="tagline">
+            Fast • Secure • Private Browsing
+        </p>
+
+        <p class="description">
+            Browse websites securely with a modern experience and powerful privacy tools.
+        </p>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h2 id="likes">1.8M</h2>
+                <span>Likes</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="stat">
+                <h2 id="downloads">2M</h2>
+                <span>Downloads</span>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+
+            <button id="installBtn" class="install">
+                Install
+            </button>
+
+            <button class="share">
+                <i class="fa-solid fa-share"></i>
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Stories -->
+
+    <section class="stories">
+
+        <div class="story">
+            <img src="assets/images/story1.jpg">
+            <span>News</span>
+        </div>
+
+        <div class="story">
+            <img src="assets/images/story2.jpg">
+            <span>Tips</span>
+        </div>
+
+        <div class="story">
+            <img src="assets/images/story3.jpg">
+            <span>Update</span>
+        </div>
+
+        <div class="story">
+            <img src="assets/images/story4.jpg">
+            <span>Videos</span>
+        </div>
+
+        <div class="story">
+            <img src="assets/images/story5.jpg">
+            <span>More</span>
+        </div>
+
+    </section>
+
+    <!-- Tabs -->
+
+    <nav class="tabs">
+
+        <button class="tab active">
+            Posts
         </button>
 
-        <button class="nav-btn">
-            <i class="fa-solid fa-circle-plus"></i>
+        <button class="tab">
+            Photos
         </button>
 
-        <button class="nav-btn">
-            <i class="fa-solid fa-film"></i>
-        </button>
-
-        <button class="nav-btn">
-            <i class="fa-solid fa-user"></i>
+        <button class="tab">
+            Reels
         </button>
 
     </nav>
+
+    <!-- Feed -->
+
+    <main class="feed">
+
+        <article class="card">
+
+            <img src="assets/images/post1.jpg">
+
+            <div class="card-info">
+
+                <h3>Latest Update</h3>
+
+                <p>
+                    Experience smooth browsing with enhanced security and speed.
+                </p>
+
+                <div class="actions">
+
+                    <button>
+                        <i class="fa-regular fa-heart"></i>
+                        15K
+                    </button>
+
+                    <button>
+                        <i class="fa-regular fa-comment"></i>
+                        2K
+                    </button>
+
+                    <button>
+                        <i class="fa-solid fa-share"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="card">
+
+            <img src="assets/images/post2.jpg">
+
+            <div class="card-info">
+
+                <h3>Private Mode</h3>
+
+                <p>
+                    Browse safely with advanced privacy protection.
+                </p>
+
+                <div class="actions">
+
+                    <button>
+                        <i class="fa-regular fa-heart"></i>
+                        22K
+                    </button>
+
+                    <button>
+                        <i class="fa-regular fa-comment"></i>
+                        4K
+                    </button>
+
+                    <button>
+                        <i class="fa-solid fa-share"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </main>
 
 </div>
 
